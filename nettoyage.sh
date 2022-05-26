@@ -1,13 +1,45 @@
-#!/bin/bash
-# Nettoyage, version 1
+#!/usr/bin/zsh
+# Nettoyage, version 2
 # fichier : nettoyage.sh
 # auteur : David GILLARD
 
+#initialisation des variables
 REP_TRACES=/var/log
+UID_ROOT=0
+LIGNES=50
+E_XCD=66
+E_NONROOT=67
 
-cat /dev/null > messages
+# a executer uniquement en root
+if [ "$UID" -ne "$UID_ROOT" ]
+then
+	echo "Vous devez être root pour utiliser ce script."
+	exit $E_NONROOT
+fi
+
+if [ -n "$1" ] # Teste la présence d'un argument (non vide) sur la ligne de commande.
+then 
+  lignes=$1
+else 
+  lignes=$LIGNES
+fi
+
+cd $REP_TRACES
+
+if [ `pwd` != "$REP_TRACES" ]
+  then
+    echo "impossible d'aller dans $REP_TRACES"
+    exit $E_XCD
+fi
+
+tail -n $lignes messages > mesg.tmp
+mv mesg.tmp messages
+
+#cat /dev/null > messages
 cat /dev/null > wtmp
+
+
 
 echo "Journaux nettoyés."
 
-exit
+exit 0
