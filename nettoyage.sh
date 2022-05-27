@@ -1,7 +1,21 @@
 #!/usr/bin/zsh
-# Nettoyage, version 2
-# fichier : nettoyage.sh
-# auteur : David GILLARD
+#===============================================================
+# Fichier: nettoyage.sh
+#
+# USAGE: ./nettoyage.sh
+#
+# Description: 
+#
+# Options: ----
+# Pré-requis: ----
+# Bugs: ----
+# Notes: ----
+# Auteur: David Gillard
+# Administration - Société: ----
+# Version: 1.0
+# Date de création: 27/05/2022 15:00:00 CEST
+# Révision: ----
+#===============================================================
 
 #initialisation des variables
 REP_TRACES=/var/log
